@@ -20,7 +20,7 @@ function wheel(state = initialWheelState, action) {
  
 const initialQuizState = null
 function quiz(state = initialQuizState, action) {
- switch(action.type) {
+  switch(action.type) {
    case("SET_QUIZ_INTO_STATE"):
        return (
            action.payload
@@ -32,10 +32,12 @@ function quiz(state = initialQuizState, action) {
  
 const initialSelectedAnswerState = null
 function selectedAnswer(state = initialSelectedAnswerState, action) {
- switch(action.type) {
+  console.log(`ACTION.PAYLOAD LOG -> ${action.payload?.text}`)
+  switch(action.type) {
    case("SET_SELECTED_ANSWER"):
+      console.log('ARE WE HERE???')
        return (
-           state = action.payload
+          action.payload
        )
    default:
        return(state);
@@ -47,7 +49,7 @@ function infoMessage(state = initialMessageState, action) {
  switch(action.type) {
    case("SET_INFO_MESSAGE"):
        return (
-           state = action.payload
+           action.payload
        )
    default:
        return(state);
