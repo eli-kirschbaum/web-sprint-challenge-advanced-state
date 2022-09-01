@@ -10,7 +10,10 @@ export function Quiz(props) {
  console.log(props)
  
  useEffect(() => {
-   props.fetchQuiz();
+   if (props.quiz == null) {
+    props.fetchQuiz()
+  };
+
  }, [])
  
  

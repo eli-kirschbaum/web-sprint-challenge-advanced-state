@@ -34,7 +34,6 @@ const initialSelectedAnswerState = null
 function selectedAnswer(state = initialSelectedAnswerState, action) {
   switch(action.type) {
    case("SET_SELECTED_ANSWER"):
-      console.log('ARE WE HERE???')
        return (
           action.payload
        )
@@ -62,17 +61,23 @@ const initialFormState = {
 }
  
 function form(state = initialFormState, action) {
- switch(action.type) {
+ console.log(action.payload)
+  switch(action.type) {
    case("INPUT_CHANGE"):
-     return {
-       ...state,
-       newQuestion: action.payload,
-       newTrueAnswer: action.payload,
-       newFalseAnswer: action.payload
-   }
+    const id = action.payload.id;
+    const value = action.payload.value;
+  
+    if (id === "newQuestion") {
+      return {...state, newQuestion: value}
+    } else if (id === "newTrueAnswer") {
+      return {...state, newTrueAnswer: value}
+    } else if (id === "newFalseAnswer") { 
+      return {...state, newFalseAnswer: value}
+    }
    case("RESET_FORM"):
-       return {
-         initialFormState
+       console.log("RESETTING THE FORM!!!!")
+      return {
+          ...initialFormState
        }
    default:
        return(state);

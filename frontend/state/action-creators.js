@@ -30,8 +30,8 @@ export function setQuiz(quiz) {
  return({type:'SET_QUIZ_INTO_STATE', payload:quiz})
 }
  
-export function inputChange() {
- return({type:'INPUT_CHANGE'})
+export function inputChange(textInput) {
+ return({type:'INPUT_CHANGE', payload:textInput})
 }
  
 export function resetForm() {
@@ -63,21 +63,23 @@ export function postAnswer(input) {
      .then(res => {
        console.log(res)
        dispatch({type: SET_SELECTED_ANSWER, payload: null})
+       dispatch(fetchQuiz())
        dispatch({type: SET_INFO_MESSAGE, payload:res.data.message})
+
      })
      .catch(err => console.log({ err }))
  }
 }
-export function postQuiz() {
+export function postQuiz(payloadInput) {
  return function (dispatch) {
    // On successful POST:
    // - Dispatch the correct message to the the appropriate state
    // - Dispatch the resetting of the form
-   axios.post('http://localhost:9000/api/quiz/new', null)
+   axios.post('http://localhost:9000/api/quiz/new', payloadInput)
+    // { "question_text": "Love JS?", "true_answer_text": "yes", "false_answer_text": "nah" }
      .then(res => {
-       console.log(res)
-       dispatch()
-       dispatch()
+       dispatch({type: SET_INFO_MESSAGE, payload:`Congrats: "${payloadInput.question_text}" is a great question!`})
+       dispatch({type: RESET_FORM, payload: null})
      })
      .catch(err => console.log({ err }))
  }
