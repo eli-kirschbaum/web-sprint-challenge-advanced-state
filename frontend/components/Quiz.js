@@ -15,12 +15,12 @@ export function Quiz(props) {
  
  
  const handleSelectClick = (evt) => {
-   props.selectAnswer({text: evt.target.value})
+   props.selectAnswer({answer_id: evt.target.value})
  }
  
  const handleSubmitClick = () => {
-  console.log(`Submitting this -> ${props.quiz.quiz_id}`)
-  props.postAnswer({ "quiz_id": props.quiz.quiz_id, "answer_id": "0VEv0" })
+  console.log(`Submitting this -> ${props.selectedAnswer.answer_id}`)
+  props.postAnswer({ "quiz_id": props.quiz.quiz_id, "answer_id": props.selectedAnswer.answer_id })
   
  }
 
@@ -34,17 +34,17 @@ export function Quiz(props) {
            <h2>{props.quiz.question}</h2>
  
            <div id="quizAnswers">
-             <div className={props.selectedAnswer?.text === props.quiz.answers[0].text ? 'answer selected' : 'answer' }>
+             <div className={props.selectedAnswer?.answer_id === props.quiz.answers[0].answer_id ? 'answer selected' : 'answer' }>
                 {props.quiz.answers[0].text}
-               <button value={props.quiz.answers[0].text} onClick={handleSelectClick}>
-                {props.selectedAnswer?.text === props.quiz.answers[0].text ? 'SELECTED' : 'Select'}
+               <button value={props.quiz.answers[0].answer_id} onClick={handleSelectClick}>
+                {props.selectedAnswer?.answer_id === props.quiz.answers[0].answer_id ? 'SELECTED' : 'Select'}
                </button>
              </div>
  
-             <div className={props.selectedAnswer?.text === props.quiz.answers[1].text ? 'answer selected' : 'answer' }>
+             <div className={props.selectedAnswer?.answer_id === props.quiz.answers[1].answer_id ? 'answer selected' : 'answer' }>
               {props.quiz.answers[1].text}
-               <button value={props.quiz.answers[1].text} onClick={handleSelectClick}>
-                {props.selectedAnswer?.text === props.quiz.answers[1].text ? 'SELECTED' : 'Select'}
+               <button value={props.quiz.answers[1].answer_id} onClick={handleSelectClick}>
+                {props.selectedAnswer?.answer_id === props.quiz.answers[1].answer_id ? 'SELECTED' : 'Select'}
                </button>
              </div>
            </div>

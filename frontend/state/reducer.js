@@ -32,7 +32,6 @@ function quiz(state = initialQuizState, action) {
  
 const initialSelectedAnswerState = null
 function selectedAnswer(state = initialSelectedAnswerState, action) {
-  console.log(`ACTION.PAYLOAD LOG -> ${action.payload?.text}`)
   switch(action.type) {
    case("SET_SELECTED_ANSWER"):
       console.log('ARE WE HERE???')
